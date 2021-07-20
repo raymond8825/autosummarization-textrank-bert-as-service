@@ -65,6 +65,7 @@ def get_textrank(sens_embedding, sens,tfidfs,para_title, para_keyword,para_fisrt
     for i , v1 in enumerate(sens_embedding):
         for j, v2 in enumerate(sens_embedding[i+1 :]):
             com_keyword_num = len(set(sens_keywords[i]) &  set(sens_keywords[i+j+1]))
+            # 通过判断两个句子中的关键词的相似度来减少两个句子之间的权重
             # we decrease cosin distance between sens based on commmon key word number
             score = cosine(v1,v2)*(1- com_keyword_num*para_keyword) 
             if i ==0:
